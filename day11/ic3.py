@@ -8,25 +8,20 @@ class TuringTape:
             with open(source) as f:
                 mem_str = f.readline()
             mem_str.rstrip('\r\n')
-            self.mem = list(map(int, mem_str.split(',')))
-        if isinstance(source, list):
+            mem_list = list(map(int, mem_str.split(',')))
+            self.mem = {i: v for i, v in enumerate(mem_list)}
+        elif isinstance(source, list):
+            self.mem = {i: v for i, v in enumerate(source)}
+        elif isinstance(source, dict):
             self.mem = source
-        if source is None:
-            self.mem = list()
+        elif source is None:
+            self.mem = dict()
 
-    # If a TuringTape's memory is accessed out of bounds, grow it:
-    def buffer_check(self, loc):
-        assert loc >= 0, 'Attempting to access a negative memory location.'
-        if loc >= len(self.mem):
-            self.mem += [0] * (loc - len(self.mem) + 1)
-
-    # Override the [] operators for get and set, so the tape acts like a list:
     def __getitem__(self, loc):
-        self.buffer_check(loc)
-        return self.mem[loc]
+        # The default getitem behavior should be to return 0:
+        return self.mem.get(loc, 0)
 
     def __setitem__(self, loc, val):
-        self.buffer_check(loc)
         self.mem[loc] = val
 
 
@@ -64,20 +59,22 @@ class IntCodeComp:
     # Main operation:
     def run(self, inp=None):
         if inp is not None:
-            self.input_buffer.append(inp)
+            if isinstance(inp, int):
+                self.input_buffer.append(inp)
+            elif isinstance(inp, list):
+                self.input_buffer += inp
         while True:
             # Fetch the current operation and its modes.
             # If its exit code is negative, break.
             exe, modes = self.parse_op()
             exe_code = exe(modes)
-            if exe_code == -1:
-                # Standard system break:
-                self.head = 0
-                return None
-            if exe_code == -2:
-                # Flush output buffer:
+            if exe_code < 0:
                 tmp = self.output_buffer
                 self.output_buffer = []
+                if exe_code == -1:
+                    # Standard sys exit.
+                    # Reset head.
+                    self.head = 0
                 return tmp
 
     def parse_op(self):
@@ -151,7 +148,7 @@ class IntCodeComp:
         if self.buffered:
             self.output_buffer.append(o)
         else:
-            print(self.mem(mode=modes[0]))
+            print(o)
         return 0
 
     def jump_if_true(self, modes):
@@ -213,8 +210,10 @@ class IntCodeComp:
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--source', '-s', dest='source', default='input')
-    args = parser.parse_args()
-    pc = IntCodeComp(args.source)
-    pc.run()
+
+    source = '../day9/test3'
+    pc = IntCodeComp(source, buffered=True)
+    result = pc.run()
+
+    print(result)
+    input()

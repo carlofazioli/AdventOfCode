@@ -1,6 +1,5 @@
 import pexpect
 import argparse
-from day11.ic3 import IntCodeComp
 
 
 class Hull:

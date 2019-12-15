@@ -25,7 +25,7 @@ class TuringTape:
         self.mem[loc] = val
 
 
-class IntCodeComp:
+class IntCodeComputer:
     def __init__(self,
                  source=None,
                  buffered=False):
@@ -69,13 +69,16 @@ class IntCodeComp:
             exe, modes = self.parse_op()
             exe_code = exe(modes)
             if exe_code < 0:
-                tmp = self.output_buffer
+                buffer_flush = self.output_buffer
                 self.output_buffer = []
                 if exe_code == -1:
                     # Standard sys exit.
                     # Reset head.
                     self.head = 0
-                return tmp
+                    flag = 'SYSEXIT'
+                else:
+                    flag = 'PENDING'
+                return buffer_flush, flag
 
     def parse_op(self):
         # Parse the tape head for the operation and its modes.
@@ -212,7 +215,7 @@ class IntCodeComp:
 if __name__ == '__main__':
 
     source = '../day9/test3'
-    pc = IntCodeComp(source, buffered=True)
+    pc = IntCodeComputer(source, buffered=True)
     result = pc.run()
 
     print(result)

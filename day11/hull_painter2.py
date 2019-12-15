@@ -1,6 +1,5 @@
-import pexpect
 import argparse
-from day11.ic3 import IntCodeComp
+from intcode import IntCodeComputer
 
 
 class Hull:
@@ -47,7 +46,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     h = Hull()
-    pc = IntCodeComp(args.source, buffered=True)
+    pc = IntCodeComputer(args.source, buffered=True)
 
     inp = 0
     response = pc.run(inp)

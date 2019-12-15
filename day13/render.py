@@ -1,4 +1,4 @@
-from day11.ic3 import IntCodeComp
+from intcode import IntCodeComputer
 
 
 shapes = {
@@ -69,7 +69,7 @@ class AI:
 if __name__ == '__main__':
 
     screen = {}
-    pc = IntCodeComp(source='input2', buffered=True)
+    pc = IntCodeComputer(source='input2', buffered=True)
     last_starfighter = AI()
 
     # Start game:

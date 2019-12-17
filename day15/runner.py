@@ -7,12 +7,15 @@ class Map:
         self.droid_location = (0, 0)
         self.map = {self.droid_location: 'S'}
         self.move_codes = {
-            # Y increases downward:
-            1: (0, 1),
-            2: (0, -1),
+            # Y increases downward (typical of AoC problems and others):
+            1: (0, -1),
+            2: (0, 1),
             3: (-1, 0),
             4: (1, 0),
         }
+
+    def unset(self):
+        self.map[self.droid_location] = 'x'
 
     def update(self, move, result):
         x, y = self.droid_location
@@ -25,11 +28,12 @@ class Map:
             self.map[(x + vx, y + vy)] = '#'
             return 0
         if result == 1:
-            # self.map[self.droid_location] = '.'
+            # Mark solution path with plus signs:
+            self.map[self.droid_location] = '+'
             self.droid_location = (x + vx, y + vy)
             return 0
         if result == 2:
-            # self.map[self.droid_location] = '.'
+            self.map[self.droid_location] = '+'
             self.droid_location = (x + vx, y + vy)
             self.map[self.droid_location] = 'O'
             return self.droid_location
@@ -74,6 +78,38 @@ class AI:
 
     def move(self, result=None):
         return random.randint(1, 4)
+
+
+def maze_solve(pc, map, move):
+    ic_out = pc.run(move)
+    result = ic_out[0][0]
+    if result == 0:
+        return False
+    else:
+        map.update(move, result)
+        if result == 2:
+            return True
+        else:
+            for next_move in range(1, 5):
+                if maze_solve(pc, map, next_move):
+                    return True
+    # Backtrack:
+    map.unset()
+    pc.run(backtrack(move))
+    return False
+
+
+def backtrack(move):
+    backtrack = None
+    if move == 1:
+        backtrack = 2
+    if move == 2:
+        backtrack = 1
+    if move == 3:
+        backtrack = 4
+    if move == 4:
+        backtrackk = 3
+    return backtrack
 
 
 if __name__ == '__main__':

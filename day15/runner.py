@@ -80,38 +80,6 @@ class AI:
         return random.randint(1, 4)
 
 
-def maze_solve(pc, map, move):
-    ic_out = pc.run(move)
-    result = ic_out[0][0]
-    if result == 0:
-        return False
-    else:
-        map.update(move, result)
-        if result == 2:
-            return True
-        else:
-            for next_move in range(1, 5):
-                if maze_solve(pc, map, next_move):
-                    return True
-    # Backtrack:
-    map.unset()
-    pc.run(backtrack(move))
-    return False
-
-
-def backtrack(move):
-    backtrack = None
-    if move == 1:
-        backtrack = 2
-    if move == 2:
-        backtrack = 1
-    if move == 3:
-        backtrack = 4
-    if move == 4:
-        backtrackk = 3
-    return backtrack
-
-
 if __name__ == '__main__':
 
     pc = IntCodeComputer(source='input', buffered=True)

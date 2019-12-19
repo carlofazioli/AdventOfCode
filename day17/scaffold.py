@@ -20,9 +20,9 @@ def render(screen):
 render(camera_out)
 
 move_routine = 'A,B,A,C,A,A,C,B,C,B\n'
-A = 'L,12,L,8,R,11,L,8,L,12\n'
-B = 'L,99,L,9,L,99,R,9\n'
-C = 'R,99,L,99,L,99\n'
+A = 'L,12,L,8,R,12\n'
+B = 'L,10,L,8,L,12,R,12\n'
+C = 'R,12,L,8,L,10\n'
 video_feed = 'n\n'
 
 part2_inp = []

@@ -35,7 +35,7 @@ def analyze_perm_part2(perm):
 
 
 def analyze_perm_part1(perm):
-    pc = pexpect.spawn('python', ['runner.py'])
+    pc = pexpect.spawn('python', ['hull_jumper.py'])
     sig = 0
     out = None
     for inp in perm:

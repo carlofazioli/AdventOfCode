@@ -78,7 +78,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     h = Hull()
-    pc = pexpect.spawn('python', ['runner.py'])
+    pc = pexpect.spawn('python', ['hull_jumper.py'])
 
     inp = 1
     pc.sendline(str(inp))

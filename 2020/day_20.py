@@ -213,7 +213,7 @@ class Image:
 
 
 if __name__ == '__main__':
-    with open('input_files/day_20.txt') as f:
+    with open('input_data/day_20.txt') as f:
         raw = f.read()
     raw_tiles_list = raw.split('\n\n')
     img = Image(raw_tiles_list)

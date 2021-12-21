@@ -1,8 +1,8 @@
-import itertools
+from utilities import load_data
 
-from utilities import load_data, submit
-
-input_data = load_data()
+YEAR = 2021
+DAY = 5
+input_data = load_data(year=YEAR, day=DAY)
 
 
 # Split input into a list of str:

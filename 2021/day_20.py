@@ -1,9 +1,9 @@
-import itertools
-import collections
+from utilities import load_data
 
-from utilities import load_data, submit
 
-input_data = load_data(day=20)
+YEAR = 2021
+DAY = 20
+input_data = load_data(year=YEAR, day=DAY)
 
 algo, img = input_data.split('\n\n')
 img = img.splitlines()

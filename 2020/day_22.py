@@ -1,4 +1,4 @@
-with open('input_files/day_22.txt') as f:
+with open('input_data/day_22.txt') as f:
     raw = f.read().strip()
 
 

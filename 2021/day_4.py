@@ -1,8 +1,8 @@
-import itertools
+from utilities import load_data
 
-from utilities import load_data, submit
-
-input_data = load_data()
+YEAR = 2021
+DAY = 4
+input_data = load_data(year=YEAR, day=DAY)
 
 
 # Split input into a list of str:
@@ -65,3 +65,5 @@ for v in vals:
         winning_indices.sort(reverse=True)
         for idx in winning_indices:
             boards.pop(idx)
+
+print(answer)

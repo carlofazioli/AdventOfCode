@@ -1,9 +1,11 @@
 import itertools
-import collections
 
-from utilities import load_data, submit
+from utilities import load_data
 
-input_data = load_data(day=19)
+
+YEAR = 2021
+DAY = 19
+input_data = load_data(year=YEAR, day=DAY)
 
 # input_data = '''--- scanner 0 ---
 # 404,-588,-901

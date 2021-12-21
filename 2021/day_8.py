@@ -1,10 +1,9 @@
-import itertools
-import collections
-from pprint import pprint
+from utilities import load_data
 
-from utilities import load_data, submit
 
-input_data = load_data(day=8)
+YEAR = 2021
+DAY = 8
+input_data = load_data(year=YEAR, day=DAY)
 
 
 # Split input into a list of str:

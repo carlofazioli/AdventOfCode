@@ -1,12 +1,8 @@
-import itertools
+from utilities import load_data
 
-from utilities import load_data, submit
-
-
-# Convert to list of int:
-# input_data = list(map(int, input_data))
-
-input_data = load_data()
+YEAR = 2021
+DAY = 3
+input_data = load_data(year=YEAR, day=DAY)
 
 # Split input into a list of str:
 input_data = input_data.splitlines()

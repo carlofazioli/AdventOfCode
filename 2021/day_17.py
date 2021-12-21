@@ -1,10 +1,11 @@
-import itertools
-import collections
 from math import inf
 
-from utilities import load_data, submit
+from utilities import load_data
 
-input_data = load_data(day=17)
+
+YEAR = 2021
+DAY = 17
+input_data = load_data(year=YEAR, day=DAY)
 # input_data = 'target area: x=20..30, y=-10..-5'
 input_data = input_data.split(',')
 x_min, x_max = list(map(int, input_data[0].split('=')[1].split('..')))
@@ -60,3 +61,5 @@ def solve():
 acmes = solve()
 top = max(acmes)
 count = len(acmes)
+print(top)
+print(count)

@@ -16,7 +16,7 @@ aaabbb
 aaaabbb
 """
 
-with open('input_files/day_19.txt') as f:
+with open('input_data/day_19.txt') as f:
     raw = f.read().strip()
 rules_raw, messages_raw = raw.split('\n\n')
 # rules_raw, messages_raw = example.strip().split('\n\n')

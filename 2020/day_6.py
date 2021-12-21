@@ -1,7 +1,7 @@
 from string import ascii_lowercase
 
 
-with open('input_files/day_6.txt') as f:
+with open('input_data/day_6.txt') as f:
     groups_raw = f.read()
 
 groups = groups_raw.split('\n\n')

@@ -1,10 +1,12 @@
 from datetime import datetime
-import itertools
 import collections
 
-from utilities import load_data, submit
+from utilities import load_data
 
-input_data = load_data(day=12)
+
+YEAR = 2021
+DAY = 12
+input_data = load_data(year=YEAR, day=DAY)
 
 # input_data = '''start-A
 # start-b

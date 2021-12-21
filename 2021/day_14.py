@@ -1,11 +1,11 @@
-from copy import copy
-from datetime import datetime
-import itertools
 import collections
 
-from utilities import load_data, submit
+from utilities import load_data
 
-input_data = load_data(day=14)
+
+YEAR = 2021
+DAY = 14
+input_data = load_data(year=YEAR, day=DAY)
 
 # input_data = '''NNCB
 #

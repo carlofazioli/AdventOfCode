@@ -1,8 +1,9 @@
 from collections import Counter
+from utilities import load_data
 
-from utilities import load_data, submit
-
-input_data = load_data(2021, 7)
+YEAR = 2021
+DAY = 7
+input_data = load_data(year=YEAR, day=DAY)
 
 # Split input into a list of str:
 input_data = input_data.splitlines()

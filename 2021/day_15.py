@@ -1,11 +1,12 @@
-import itertools
-import collections
 from math import inf
 import heapq
 
-from utilities import load_data, submit
+from utilities import load_data
 
-input_data = load_data(day=15)
+
+YEAR = 2021
+DAY = 15
+input_data = load_data(year=YEAR, day=DAY)
 
 # input_data = '''1163751742
 # 1381373672

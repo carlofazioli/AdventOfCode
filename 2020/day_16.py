@@ -1,4 +1,4 @@
-with open('input_files/day_16.txt') as f:
+with open('input_data/day_16.txt') as f:
     notes = f.read()
 
 

@@ -1,9 +1,9 @@
-import itertools
-import collections
+from utilities import load_data
 
-from utilities import load_data, submit
 
-input_data = load_data(day=13)
+YEAR = 2021
+DAY = 13
+input_data = load_data(year=YEAR, day=DAY)
 
 points, folds = input_data.split('\n\n')
 points = points.splitlines()

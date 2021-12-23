@@ -1,3 +1,4 @@
+import itertools
 from collections import defaultdict
 from utilities import load_data
 
@@ -5,6 +6,12 @@ from utilities import load_data
 YEAR = 2015
 DAY = 9
 input_data = load_data(year=YEAR, day=DAY)
+
+# input_data = '''London to Dublin = 464
+# London to Belfast = 518
+# Dublin to Belfast = 141
+# '''
+
 input_data = input_data.splitlines()
 
 graph = defaultdict(list)
@@ -18,9 +25,6 @@ for leg in input_data:
     if d > longest:
         longest = d
         ends = (a, b)
-    if d < shortest:
-        shortest = d
-        part_2_start = a
     graph[a].append((b, d))
     graph[b].append((a, d))
 
@@ -37,13 +41,13 @@ for leg in input_data:
 # print(answer)
 
 answer = 0
-route = [part_2_start]
-while len(route) < 8:
-    dlist = graph[route[-1]]
-    dlist.sort(key=lambda x:x[1])
-    p = dlist.pop()
-    while p[0] in route:
-        p = dlist.pop()
-    route.append(p[0])
-    answer += p[1]
+for route in itertools.permutations(graph.keys()):
+    s = 0
+    for i in range(len(route)-1):
+        dlist = graph[route[i]]
+        for loc, d in dlist:
+            if loc == route[i+1]:
+                s += d
+    answer = max(answer, s)
+
 print(answer)

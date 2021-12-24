@@ -44,3 +44,11 @@ scores = {deert: 0 for deert in reindeerts.keys()}
 for t in range(1, 2504):
     distances = {deert: sim(*data, t) for deert, data in reindeerts.items()}
     m = max(d for d in distances.values())
+    for deert, d in distances.items():
+        if d == m:
+            scores[deert] += 1
+
+answer = 0
+for score in scores.values():
+    answer = max(answer, score)
+print(answer)
